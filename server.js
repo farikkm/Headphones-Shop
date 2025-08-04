@@ -43,6 +43,42 @@ app.post("/headphones/add", (req, res) => {
     .send(newHeadphone);
 });
 
+// Update the headphone
+app.put("/headphones/update/:id", (req, res) => {
+  if (!req.body) {
+    return res.status(404).send("Not OK");
+  }
+
+  const { name, price } = req.body;
+
+  const headphone = headphonesList.find(
+    (h) => h.id === parseInt(req.params.id)
+  );
+
+  if (headphone === -1) {
+    return res.status(404).send("Headphone not found");
+  }
+
+  headphone.name = name;
+  headphone.price = price;
+
+  res.status(204).end();
+});
+
+// Delete the headphone
+app.delete("/headphones/delete/:id", (req, res) => {
+  const headphoneIdx = headphonesList.findIndex(
+    (h) => h.id === parseInt(req.params.id)
+  );
+
+  if (headphoneIdx === -1) {
+    return res.status(404).send("Headphone not found");
+  }
+
+  headphonesList.splice(headphoneIdx, 1);
+  res.status(204).end();
+});
+
 app.listen(port, hostname, () => {
   console.log(`Server is running on port http://${hostname}:${port}`);
 });
