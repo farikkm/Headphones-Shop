@@ -1,0 +1,32 @@
+{
+  "name": "headphones-shop",
+  "version": "1.0.0",
+  "description": "A simple server for headphones shop",
+  "keywords": [
+    "headphones",
+    "shop",
+    "express"
+  ],
+  "homepage": "https://github.com/farikkm/Headphones-Shop#readme",
+  "bugs": {
+    "url": "https://github.com/farikkm/Headphones-Shop/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farikkm/Headphones-Shop.git"
+  },
+  "license": "ISC",
+  "author": "Fariz",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
