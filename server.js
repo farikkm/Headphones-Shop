@@ -2,11 +2,13 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 
+import 'dotenv/config'
+
 const app = express();
 app.use(express.json());
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const CURRENT_DIR = path.dirname("pages");
 
@@ -35,7 +37,7 @@ app.post("/headphones/add", (req, res) => {
   }
 
   const { name, price } = req.body;
-  const newHeadphone = { id: nextId++, name, price };
+  const newHeadphone = { id: nextId++, name, price, successMessage: "Response is Ok" };
   headphonesList.push(newHeadphone);
   res
     .status(201)
