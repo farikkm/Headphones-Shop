@@ -73,11 +73,11 @@ app.delete("/headphones/delete/:id", (req, res) => {
   );
 
   if (headphoneIdx === -1) {
-    return res.status(404).send("Headphone not found");
+    return res.status(404).setHeader("Content-Type", "text/plain").send("Headphone not found");
   }
 
   headphonesList.splice(headphoneIdx, 1);
-  res.status(204).end();
+  res.status(204).setHeader("Content-Type", "text/xml").end();
 });
 
 app.listen(port, () => {
