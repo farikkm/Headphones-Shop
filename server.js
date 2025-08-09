@@ -7,7 +7,6 @@ import 'dotenv/config'
 const app = express();
 app.use(express.json());
 
-const hostname = "127.0.0.1";
 const port = process.env.PORT || 3000;
 
 const CURRENT_DIR = path.dirname("pages");
@@ -81,6 +80,6 @@ app.delete("/headphones/delete/:id", (req, res) => {
   res.status(204).end();
 });
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
   console.log(`Server is running on port http://${hostname}:${port}`);
 });
