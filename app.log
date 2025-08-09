@@ -1,0 +1,10 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/headphones/add\",\"status\":\"201\",\"responseTime\":\"1.964\"}"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Adding a new headphone"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/headphones/add\",\"status\":\"201\",\"responseTime\":\"3.812\"}"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Updating an existing headphone"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"PUT\",\"url\":\"/headphones/update/1\",\"status\":\"204\",\"responseTime\":\"1.664\"}"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Getting all headphones"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/headphones\",\"status\":\"200\",\"responseTime\":\"2.177\"}"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"Deleting an existing headphone"}
+{"level":"\u001b[31merror\u001b[39m","message":"Headphone not found"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"DELETE\",\"url\":\"/headphones/delete/2\",\"status\":\"404\",\"responseTime\":\"1.206\"}"}

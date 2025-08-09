@@ -1,15 +1,32 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+import morgan from "morgan";
 
 import 'dotenv/config'
+
+import logger from "./logger.js";
 
 const app = express();
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
-
 const CURRENT_DIR = path.dirname("pages");
+const morganFormat = ":method :url :status :response-time ms";
+
+app.use(morgan(morganFormat, {
+  stream: {
+    write: (message) => {
+      const logObject = {
+        method: message.split(" ")[0],
+        url: message.split(" ")[1],
+        status: message.split(" ")[2],
+        responseTime: message.split(" ")[3],
+      };
+      logger.info(JSON.stringify(logObject))
+    }
+  },  
+}))
 
 let nextId = 1;
 const headphonesList = [];
@@ -23,6 +40,8 @@ app.get("/", (_, res) => {
 
 // Get all headphones
 app.get("/headphones", (_, res) => {
+  logger.info("Getting all headphones")
+  
   res
     .status(200)
     .setHeader("Content-Type", "application/json")
@@ -31,6 +50,8 @@ app.get("/headphones", (_, res) => {
 
 // Create a new headphone
 app.post("/headphones/add", (req, res) => {
+  logger.info("Adding a new headphone")
+
   if (!req.body) {
     return res.status(404).send("Not OK");
   }
@@ -46,6 +67,8 @@ app.post("/headphones/add", (req, res) => {
 
 // Update the headphone
 app.put("/headphones/update/:id", (req, res) => {
+  logger.warn("Updating an existing headphone")
+
   if (!req.body) {
     return res.status(404).send("Not OK");
   }
@@ -57,6 +80,7 @@ app.put("/headphones/update/:id", (req, res) => {
   );
 
   if (headphone === -1) {
+    logger.error("Headphone not found");
     return res.status(404).send("Headphone not found");
   }
 
@@ -68,11 +92,14 @@ app.put("/headphones/update/:id", (req, res) => {
 
 // Delete the headphone
 app.delete("/headphones/delete/:id", (req, res) => {
+  logger.warn("Deleting an existing headphone")
+
   const headphoneIdx = headphonesList.findIndex(
     (h) => h.id === parseInt(req.params.id)
   );
 
   if (headphoneIdx === -1) {
+    logger.error("Headphone not found");
     return res.status(404).setHeader("Content-Type", "text/plain").send("Headphone not found");
   }
 
